@@ -1,22 +1,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"><head>
     <meta charset="utf-8" />
-    <title>Hello, World! • A-Frame</title>
+    <title>Aetheria title</title>
     <meta name="description" content="Hello, World! • A-Frame" />
     <script src="../../../dist/aframe-master.js"></script>
   </head>
-  <body class="a-body "><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script>
+  <body class="a-body "><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script>
+    <script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script><script type="text/javascript" src="//25.13.175.79:35729/livereload.js?snipver=1" async="" defer="defer"></script>
+     <script type="text/javascript">
+     AFRAME.registerComponent('model-opacity', {
+  schema: {default: 1.0},
+  init: function () {
+    this.el.addEventListener('model-loaded', this.update.bind(this));
+  },
+  update: function () {
+    var mesh = this.el.getObject3D('mesh');
+    var data = this.data;
+    if (!mesh) { return; }
+    mesh.traverse(function (node) {
+      if (node.isMesh) {
+        node.material.opacity = data;
+        node.material.transparent = data < 1.0;
+        node.material.needsUpdate = true;
+      }
+    });
+  }
+});</script>
     <a-scene class="fullscreen" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="">
       <a-entity gltf-model="model/invertedsphere.glb" scale="8 8 8"></a-entity>
       <a-entity>
         <a-entity gltf-model="model/invertedsphere9.glb" scale="10 10 10" rotation="0 160 0"></a-entity>
-        <a-animation attribute="opacity" from="0" to="100" repeat="indefinite">
-      </a-entity>
+        <a-animation attribute="model-opacity" from="0" to="100" repeat="indefinite">
+      </a-entity>-->
       <a-entity rotation="0 0 0">
         <a-plane src="model/tex/floor.png" height="10" width="10" rotation="-90 -2 0" material="transparent:true"></a-plane>
-        <a-animation attribute="rotation" dur="9900" easing="linear" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
+        <a-animation attribute="rotation" dur="50000" easing="linear" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
       </a-entity>
-        <a-plane src="model/tex/aetheria.png" height="1" width="4.25" position="0 2 -4" material="transparent:true"></a-plane>
-        <a-text value="Look to Start" geometry="primitive:plane"></a-text>
+        <a-plane src="model/tex/aetheria.png" height="1" width="4.25" position="0 3 -4" material="transparent:true"></a-plane>
+        <a-plane src="model/tex/looktostart.png" height="2" width="3.75" position="0 1.5 -4" material="transparent:true"></a-plane>
     </a-scene>
 
 
