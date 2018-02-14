@@ -27,10 +27,14 @@
 });</script>
     <a-scene class="fullscreen" inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="">
       <a-entity gltf-model="model/invertedsphere.glb" scale="8 8 8"></a-entity>
-      <a-entity>
-        <a-entity gltf-model="model/invertedsphere9.glb" scale="10 10 10" rotation="0 160 0"></a-entity>
-        <a-animation attribute="model-opacity" from="0" to="100" repeat="indefinite">
-      </a-entity>-->
+     <a-entity gltf-model="model/invertedsphere9.glb" scale="10 10 10" rotation="0 160 0" model-opacity="1">
+        <a-animation attribute="model-opacity"
+                    dur="13000"
+                    from="0"
+                    to="0.8"
+                    direction="alternate"
+                    repeat="indefinite"></a-animation>
+      </a-entity>
       <a-entity rotation="0 0 0">
         <a-plane src="model/tex/floor.png" height="10" width="10" rotation="-90 -2 0" material="transparent:true"></a-plane>
         <a-animation attribute="rotation" dur="50000" easing="linear" fill="forwards" to="0 360 0" repeat="indefinite"></a-animation>
