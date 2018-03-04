@@ -5,11 +5,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.js"></script>
   </head>
   <body class="a-body ">
+    <!-- script written by ____(donmccurdy?) to pass on the opacity of the model to A-Frame.-->
      <script type="text/javascript">
      AFRAME.registerComponent('model-opacity', {
   schema: {default: 1.0},
   init: function () {
     this.el.addEventListener('model-loaded', this.update.bind(this));
+
+<!-- https://aframe.io/docs/0.7.0/components/raycaster.html -->
+    AFRAME.registerComponent('collider-check', {
+  dependencies: ['raycaster'],
+  init: function () {
+    this.el.addEventListener('raycaster-intersected', function () {
+      console.log('Player hit something!');
+    });
+  }
+});
   },
   update: function () {
     var mesh = this.el.getObject3D('mesh');
@@ -40,6 +51,11 @@
       </a-entity>
         <a-plane src="model/tex/aetheria.png" height="1" width="4.25" position="0 3 -4" material="transparent:true"></a-plane>
         <a-plane src="model/tex/looktostart.png" height="2" width="3.75" position="0 1.5 -4" material="transparent:true"></a-plane>
+
+        <a-entity id="player" collider-check>
+  <a-entity raycaster="objects: .collidable" position="0 -0.9 0" rotation="90 0 0"></a-entity>
+</a-entity>
+<a-entity class="collidable" geometry="primitive: box" position="1 0 0"></a-entity>
     </a-scene>
 
 
